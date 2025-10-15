@@ -22,9 +22,9 @@ Next, we use BLAST to search for our genes of interest within the Nipponbare ref
 
 ```
 
-Finally, we can investigate the top alignment matches returned by BLAST and format the regions for downstream scripts. I ran the **blast_cleanup.R** script to do this.
+Finally, we can investigate the top alignment matches returned by BLAST and save the top genomic regions for use in downstream scripts. I ran the **blast_cleanup.R** script to do this.
 
-It's a good idea to check which sequences we received, and how they compare to our reference genes. My reference genes came from Kitaake, so I aligned the top BLAST hits from Nipponbare against the Kitaake sequences to make sure they are very similar. I also used IGV to see what the transcript name for each gene region was. Below are my results.
+It's a good idea to check the regions we saved and how they compare to our original genes of interest. My genes of interest came from Kitaake, so I aligned the top BLAST hits from Nipponbare against the original Kitaake sequences to make sure they look very similar. I also used IGV to see what the transcript name for each gene region was. Below are my results.
 
 |Sequence|Location|Transcript|% Identity to Kitaake|Strand|
 |:---:|:---:|:---:|:---:|:---:|
