@@ -26,7 +26,7 @@ Finally, we can investigate the top alignment matches returned by BLAST and save
 
 ```{r}
 
-	blast_cleanup.R
+	Scripts/blast_cleanup.R
 
 ```
 
