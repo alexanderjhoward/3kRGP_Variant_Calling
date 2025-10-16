@@ -18,3 +18,5 @@ filtered <- df %>%
 # Format output file for downstream scripts
 output <- filtered %>%
   select(sseqid, start, end, qseqid)
+write.table(output, file="../Output/OsPSY_locs.txt", quote=FALSE, sep=" ", row.names = FALSE, col.names = FALSE)
+
