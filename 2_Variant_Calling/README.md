@@ -18,7 +18,7 @@ I use the “screen” function in Unix to input SLURM requests because I can th
 	screen -S PSY_run # Set a session name for the screen to help distinguish it later
 
 	while read i; do
-        	sbatch Scripts/CallOsPSY.sh $i
+		sbatch Scripts/CallOsPSY.sh $i
 		sleep 30s
 	done < ../1_Reference_Genome/Output/OsPSY_locs.txt
 
