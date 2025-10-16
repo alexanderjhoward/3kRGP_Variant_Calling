@@ -18,7 +18,7 @@ I use the “screen” function in Unix to input SLURM requests because I can th
 	screen -S PSY_run # Set a session name for the screen to help distinguish it later
 
 	while read i; do
-		sbatch Scripts/CallOsPSY.sh $i
+		sbatch Scripts/call_variants.sh $i
 		sleep 30s
 	done < ../1_Reference_Genome/Output/OsPSY_locs.txt
 
@@ -29,10 +29,10 @@ I use the “screen” function in Unix to input SLURM requests because I can th
 
 ```
 
-The **CallOsPSY.sh** script does the following:
+The **call_variants.sh** script does the following:
 1. Download a BAM genome alignment file from the 3kRGP dataset according to the list of samples we made (samples.txt)
-2. Pull the genomic regions that correspond to our sequences of interest (found in **OsPSY_locs.txt**)
+2. Pull the genomic regions that correspond to our sequences of interest (found in **OsPSY_locs.txt**, generated during Step 1)
 3. Call variants of the genome relative to the Nipponbare genome, and filter for high-quality variant calls
 4. Apply the variants called to the reference genome sequence and save the sequence as a FASTA file
 
-The variant call files (VCFs) are saved under the "SearchResults/VCF" directory. The genomic files (FASTAs) are saved under "SearchResults/FASTA" directory.
+The variant call files (VCFs) are saved under the "Output/VCF" directory. The genomic files (FASTAs) are saved under "Output/FASTA" directory.
