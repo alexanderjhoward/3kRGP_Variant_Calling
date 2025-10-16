@@ -11,7 +11,7 @@ First we need to download the list of all 3,024 genome names found in the 3kRGP 
 
 Now, with all our genomic locations determined, we can go through the process of downloading sample genomes, saving genomic regions of interest, and calling variants of the sample genome relative to the Nipponbare genome. This is all done through the code shown below. 
 
-I use the “screen” function in Unix to input SLURM requests because I can then run this code in the background without having to keep tabs on it. Since I have the script partition priority set to “low”, any available resources on the cluster can be devoted to each request. I set a limit on the loop to one request per 30 seconds to reduce file storage demand and improve download speed. That means 120 requests/hr, so for 3,024 samples this requires 25.2 hours of runtime to complete. I needed hundreds of GB of file storage to accomodate this process.
+I use the “screen” function in Unix to input SLURM requests because I can then run this code in the background without having to keep tabs on it. I set a limit on the loop to input one SLURM request per 30 seconds. This was done to reduce file storage demand and improve download speed. That means 120 requests/hr, so for 3,024 samples this requires 25.2 hours of runtime to complete. I needed hundreds of GB of file storage to accomodate this process. If you have a lot of file storage, this delay in requests could probably be shortened. Alternatively, the entire set of resequenced alignments could be downloaded and stored locally to search against as a database. This would require a few TB of storage, but would make each variant search much faster.
 
 ```{bash}
 
@@ -34,3 +34,5 @@ The **CallOsPSY.sh** script does the following:
 2. Pull the genomic regions that correspond to our sequences of interest (found in **OsPSY_locs.txt**)
 3. Call variants of the genome relative to the Nipponbare genome, and filter for high-quality variant calls
 4. Apply the variants called to the reference genome sequence and save the sequence as a FASTA file
+
+The variant call files (VCFs) are saved under the "SearchResults/VCF" directory. The genomic files (FASTAs) are saved under "SearchResults/FASTA" directory.
