@@ -6,8 +6,6 @@ The 3kRGP dataset provides resequencing data (sample reads aligned against a ref
 
 My method for this approach is as follows:
 1. Identify the genomic location of your gene of interest within the Nipponbare reference genome.
-2. Download a sample's resequencing data and isolate the genomic region of interest.
-3. Call sequence variants within this region relative to the Nipponbare reference genome.
-4. Convert the variant calls into DNA and protein sequences.
+2. Download a sample's resequencing data, isolate the genomic region of interest, and call sequence variants relative to the Nipponbare reference genome.
+4. Format the variant calls into usable sequence data.
 5. Analyze and visualize the sequence variant results.
-
