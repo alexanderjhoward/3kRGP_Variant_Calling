@@ -15,10 +15,14 @@ conda activate 3kRGP
 set -e
 set -x
 
+# Define variables
+# Define input variables
+FASTA=${1}
+
 # BLAST search for genes of interest against Nipponbare reference genome
 cp Source/IRGSP-1.0_genome.fasta Source/BLAST/
 makeblastdb -in Source/BLAST/IRGSP-1.0_genome.fasta -dbtype nucl
-blastn -query Source/OsPSY_vars.fa -db Source/BLAST/IRGSP-1.0_genome.fasta -outfmt '10 qseqid sseqid evalue bitscore qstart qend qseq sstart send sseq' -out Output/OsPSY_search.txt
+blastn -query $FASTA -db Source/BLAST/IRGSP-1.0_genome.fasta -outfmt '10 qseqid sseqid evalue bitscore qstart qend qseq sstart send sseq' -out Output/IRGSP-1.0_BLASTsearch.txt
 
 # Print out final statistics about resource use before job exits
 scontrol show job ${SLURM_JOB_ID}
