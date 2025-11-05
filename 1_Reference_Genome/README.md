@@ -36,7 +36,7 @@ The **blast_cleanup.R** script is used next to find the top BLAST hit for each s
 ```
 
 <center>
-<img src="Output/Before_Annotation.png">
+<img src="Output/Figures/Before_Annotation.png">
 </center>
 
 With this set of genomic regions, we should check that they look correct. My genes of interest came from Kitaake, so I aligned my top BLAST hits against the Kitaake sequences to make sure they looked very similar. I also used IGV to see what the transcript name for each gene region was. Below are my results.
@@ -55,5 +55,5 @@ With this set of genomic regions, we should check that they look correct. My gen
 I added these transcript names to the **IRGSP-1.0_IGVlocs.csv** spreadsheet by their corresponding sequence.
 
 <center>
-<img src="Output/After_Annotation.png">
+<img src="Output/Figures/After_Annotation.png">
 </center>
