@@ -6,8 +6,8 @@ Welcome to my tutorial on how to use the 3,000 Rice Genomes Project (3kRGP) data
 
 ## The Code
 This repository uses scripts for two coding languages: bash and R.
-* Scripts that end in ".sh" are bash shell scripts that can be run on a terminal.
-* Scripts that end in ".R" are R scripts that can be run on an application like RStudio.
+* Scripts that end in .sh are bash shell scripts that can be run on a terminal.
+* Scripts that end in .R are R scripts that can be run on an application like RStudio.
 
 ## Setting up a conda environment
 A conda environment helps support the use of specalized packages with bash scripts. Attached is a conda environment containing all the packages that need to be installed to run all the bash scripts in this pipeline.
