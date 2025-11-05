@@ -13,10 +13,9 @@ filtered <- df %>%
   filter(evalue <= min(evalue) & qstart == 1) %>%
   mutate(strand = ifelse(sstart < send, "+", "-")) %>%
   mutate(start = ifelse(sstart < send, sstart, send)) %>%
-  mutate(end = ifelse(sstart < send, send, sstart))
+  mutate(end = ifelse(sstart < send, send, sstart)) %>%
+  mutate(igv = paste0(sseqid, ":", start, "-", end))
 
-# Format output file for downstream scripts
-output <- filtered %>%
-  select(sseqid, start, end, qseqid)
-write.table(output, file="../Output/OsPSY_locs.txt", quote=FALSE, sep=" ", row.names = FALSE, col.names = FALSE)
-
+# Format output file to search for corresponding transcript ID in IGV
+output <- filtered %>% select(qseqid, igv)
+write.csv(output, file="../Output/IRGSP-1.0_OsPSY_IGVlocs.csv", quote=FALSE, row.names = FALSE)
