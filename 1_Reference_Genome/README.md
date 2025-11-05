@@ -20,14 +20,14 @@ Once everything is downloaded, set up an IGV profile to look at sample alignment
 *Note: If you move your genome, annotations, sequence files, or .xml session file to a different directory then the session will no longer load properly in IGV, so make sure these files stay where they are when you save your session.*
 
 ## Locate genes of interest in the Nipponbare genome
-Next, use BLAST to search for your genes of interest within the Nipponbare reference genome. Put all your sequences a single FASTA file (I have mine in **OsPSY_vars.fa** under the "Source" directory, but you can provide any file you prefer).
+Next, use BLAST to search for your genes of interest within the Nipponbare reference genome. Input all your sequences into with script with a single FASTA file (Mine is called **OsPSY_vars.fa**, found in the "Source" directory. You can use any other FASTA you prefer).
 ```{bash}
 
 	sbatch Scripts/blast_reference.sh Source/OsPSY_vars.fa
 
 ```
 
-We can investigate the top hits returned by BLAST and save the top genomic regions for use in downstream scripts. I ran the **blast_cleanup.R** script to do this.
+The **blast_cleanup.R** script is used next to find the top BLAST hit for each sequence of interest. These are output as a spreadsheet called **IRGSP-1.0_IGVlocs.csv** in the "Output" directory.
 
 ```{r}
 
@@ -35,7 +35,7 @@ We can investigate the top hits returned by BLAST and save the top genomic regio
 
 ```
 
-It's a good idea to check the regions we saved and how they compare to our original genes of interest. My genes of interest came from Kitaake, so I aligned the top BLAST hits from Nipponbare against the original Kitaake sequences to make sure they look very similar. I also used IGV to see what the transcript name for each gene region was. Below are my results.
+With this set of genomic regions, we should check that they look correct. My genes of interest came from Kitaake, so I aligned my top BLAST hits against the Kitaake sequences to make sure they looked very similar. I also used IGV to see what the transcript name for each gene region was. Below are my results.
 
 |Sequence|Location|Transcript|% Identity to Kitaake|Strand|
 |:---:|:---:|:---:|:---:|:---:|
@@ -47,3 +47,5 @@ It's a good idea to check the regions we saved and how they compare to our origi
 |OsPSY6|chr07:26188163-26189948|Os07t0631300-01|99.9%|-|
 |OsPSY7|chr05:26922134-26923393|Os05t0542300-01|99.8%|-|
 |OsPSY8|chr01:8986139-8987609|Os01t0264400-01|99.4%|+|
+
+I added these transcript names to the **IRGSP-1.0_IGVlocs.csv** spreadsheet by their corresponding sequence.
