@@ -1,6 +1,6 @@
 # Step 1: Identify regions of interest in reference genome
 
-The 3kRGP has sample genomes aligned against the Nipponbare IRGSP-1.0 reference genome. We need to query these alignments to get sequence variants. Since the sample genomes were assembled relative to Nipponbare, we first need to figure out where in the Nipponbare genome our genes of interest are located. These will be the locations that we then retrieve from each sample genome down the line.
+The 3kRGP has genomes aligned against the Nipponbare IRGSP-1.0 reference genome. Since the sample genomes were assembled relative to Nipponbare, we first need to figure out where in the Nipponbare genome our genes of interest are located. Take your time verifying the region you are pulling from and ensure the region is accurately annotated so you life will be easier down the road!
 
 ## Download the Nipponbare genome assembly and annotation
 First, we need the reference genome and annotations.
