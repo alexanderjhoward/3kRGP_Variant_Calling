@@ -77,7 +77,7 @@ It's important to note that sometimes genomes are not as well-annotated as you w
 If this happens, you can manually write your own genome annotations. Genome annotations are in [GFF format](https://en.wikipedia.org/wiki/General_feature_format), which is a text file of tab-separated values. The data I collected looked like this:
 |chromosome|source|feature|start|end|score|strand|phase|attributes|
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-[chr11|self-annotation|mRNA|23063476|23064575|.|+|.|ID=OsPSY5|
+|chr11|self-annotation|mRNA|23063476|23064575|.|+|.|ID=OsPSY5|
 |chr11|self-annotation|CDS|23063675|23063771|.|+|0|Parent=OsPSY5|
 |chr11|self-annotation|CDS|23063896|23063954|.|+|2|Parent=OsPSY5|
 |chr11|self-annotation|CDS|23064191|23064322|.|+|0|Parent=OsPSY5|
