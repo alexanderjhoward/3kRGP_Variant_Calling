@@ -125,3 +125,10 @@ We now have a GFF file with just our genes of interest annotated in the Nipponba
 	Scripts/format_gff.R
 
 ```
+
+This script outputs two things:
+1. A BED file containing all the genomic regions you are interested in.
+2. A set of text files for each gene that contain the location of each exon of the CDS.
+
+With these locations, we can finally start searching for genetic variants!
+
