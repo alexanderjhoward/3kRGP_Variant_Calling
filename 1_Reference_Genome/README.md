@@ -24,7 +24,7 @@ Once everything is downloaded, set up an IGV profile to look at sample alignment
 *Note: If you move or rename your genome, annotations, sequence files, or .xml session file then the session will no longer load properly in IGV, so make sure these files stay where they are after you save your session.*
 
 ## Collect or create Nipponbare genome annotations for genes of interest
-Next, use BLAST to search for your genes of interest within the Nipponbare reference genome. Input all your sequences as a FASTA file into the script (Mine is called **OsPSY_vars.fa**, found in the "Source" directory). This script saves the BLAST results to **IRGSP-1.0_BLASTsearch.txt** in the "Output" directory.
+Next, use BLAST to search for your genes of interest within the Nipponbare reference genome. Input all your sequences as a FASTA file into the script (mine is called **OsPSY_vars.fa**, found in the "Source" directory). This script saves the BLAST results to **IRGSP-1.0_BLASTsearch.txt** in the "Output" directory.
 
 ```{bash}
 bash Scripts/blast_reference.sh Source/OsPSY_vars.fa
