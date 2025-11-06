@@ -21,7 +21,7 @@ Once everything is downloaded, set up an IGV profile to look at sample alignment
 2. Load in genome annotations by selecting “File > Load from file” and select the **transcripts.gff** file (found in the "Source/IRGSP-1.0_representative" directory).
 3. After setting your browser up, save your session by creating an IGV profile. Select “File > Save session” and name the session file whatever you’d like. Save this file to a directory you will remember (such as the "Source" directory). If you add any new annotations or alignments to this session, make sure to re-save the session file before closing IGV! To re-load your session, go to “File > Open session” and select the .xml session file you saved.
 
-*Note: If you move your genome, annotations, sequence files, or .xml session file to a different directory then the session will no longer load properly in IGV, so make sure these files stay where they are when you save your session.*
+*Note: If you move or rename your genome, annotations, sequence files, or .xml session file then the session will no longer load properly in IGV, so make sure these files stay where they are after you save your session.*
 
 ## Collect or create Nipponbare genome annotations for genes of interest
 Next, use BLAST to search for your genes of interest within the Nipponbare reference genome. Input all your sequences as a FASTA file into the script (Mine is called **OsPSY_vars.fa**, found in the "Source" directory). This script saves the BLAST results to **IRGSP-1.0_BLASTsearch.txt** in the "Output" directory.
