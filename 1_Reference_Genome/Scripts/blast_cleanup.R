@@ -6,6 +6,7 @@ setwd(dirname(getActiveDocumentContext()$path))
 # Load in BLAST results
 df <- read.csv('../Output/IRGSP-1.0_BLASTsearch.txt', header = F)
 colnames(df) <- c('qseqid','sseqid','evalue','bitscore','qstart','qend','qseq','sstart','send','sseq')
+print(df)
 
 # Filter for sequences of interest
 filtered <- df %>%
