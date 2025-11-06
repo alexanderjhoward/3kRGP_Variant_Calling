@@ -107,10 +107,20 @@ Since this manual annotation is what I want to use in my genome search, I can up
 <img src="Output/Figures/Final_Annotation.png">
 </center>
 
-The final step is to subset out the transcripts we are interested in from the updated annotation file. 
+The final step is to pull out all the transcript annotations we are interested in from the updated annotation file. This gets saved to **genes_of_interest.gff** in the "Output" directory.
 
 ```{bash}
 
-	awk '{print $3}' Output/IRGSP-1.0_IGVlocs.txt | grep -Ff - Source/IRGSP-1.0_representative/transcripts.gff > Source/genes_of_interest.gff
+	awk '{print $3}' Output/IRGSP-1.0_IGVlocs.txt | grep -Ff - Source/IRGSP-1.0_representative/transcripts.gff > Output/genes_of_interest.gff
+
+```
+
+## Generate files with final regions of interest
+
+Now that we have our GFF annotation file of all genes we want to search, we can generate some files that will be used later to search the 3kRGP dataset.
+
+```{r}
+
+	Scripts/format_gff.R
 
 ```
