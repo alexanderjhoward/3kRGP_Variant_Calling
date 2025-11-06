@@ -94,9 +94,12 @@ When I go back onto IGV and load **updated_transcripts.gff** into my session, I 
 
 *Note: By default, IGV will have all transcript annotations overlap into a single track. To show all annotations in a region clearly, right-click the annotation track and select the "Expanded" option.*
 
-Since this manual annotation is what I want to use in my genome search, I can update the spreadsheet with its new ID.
-
 <center>
 <img src="Output/Figures/Updated_Nipponbare_OsPSY5.png">
 </center>
 
+Since this manual annotation is what I want to use in my genome search, I can update the spreadsheet with its new ID.
+
+<center>
+<img src="Output/Figures/Final_Annotation.png">
+</center>
