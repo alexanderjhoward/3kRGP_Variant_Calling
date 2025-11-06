@@ -1,4 +1,14 @@
 # Step 2: Call sample genome variants relative to reference genome
+The 3kRGP is hosted online and can be queried to pull small genomic regions instead of having to download the entire genome assembly. After downloading these alignments, we can compare them to the Nipponbare reference genome to call sequence variants. These sequences can then be saved and analyzed down the road.
+
+## Call sequence variants
+The **call_variants.sh** script does the following:
+1. Download a BAM genome alignment file from the 3kRGP dataset according to the list of samples we made (samples.txt)
+2. Pull the genomic regions that correspond to our sequences of interest (found in **OsPSY_locs.txt**, generated during Step 1)
+3. Call variants of the genome relative to the Nipponbare genome, and filter for high-quality variant calls
+4. Apply the variants called to the reference genome sequence and save the sequence as a FASTA file
+
+
 
 First we need to download the list of all 3,024 genome names found in the 3kRGP dataset.
 
