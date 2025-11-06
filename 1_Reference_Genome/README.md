@@ -64,7 +64,7 @@ I manually updated the **IRGSP-1.0_IGVlocs.csv** spreadsheet to include the asso
 <img src="Output/Figures/After_Annotation.png">
 </center>
 
-It's important to note that sometimes genomes are not as well-annotated as you want them to be. Sometimes a gene has no associated transcript annotation, or maybe the annotation doesn't look quite right. For example, the transcript for OsPSY5 (Os11t0600600-01) contains a single exon. When we compare this exon annotation to the Kitaake OsPSY5 transcript (OsKitaake11g189000), this seems inaccurate. 
+It's important to note that sometimes genomes are not as well-annotated as you want them to be. A gene may not have an associated transcript annotation, or maybe the annotation for a particular gene doesn't look quite right. For example, the transcript for OsPSY5 (Os11t0600600-01) contains a single exon. When we compare this annotation to the Kitaake OsPSY5 transcript (OsKitaake11g189000), this seems to be inaccurate. 
 
 <center>
 <img src="Output/Figures/Nipponbare_OsPSY5.png">
