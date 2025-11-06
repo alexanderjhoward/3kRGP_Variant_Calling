@@ -39,7 +39,7 @@ The **blast_cleanup.R** script is used next to identify the top BLAST hit for ea
 <img src="Output/Figures/Before_Annotation.png">
 </center>
 
-With this set of genomic regions, we should check that they look correct. My genes of interest came from Kitaake, so I aligned my top BLAST hits against the Kitaake sequences to make sure they looked very similar.
+With this set of genomic regions, we should check that they look correct. My query sequences came from Kitaake, so I aligned my top hits against the Kitaake sequences to make sure they looked similar.
 
 |Sequence|Location|% Identity to Kitaake|
 |:---:|:---:|:---:|
@@ -52,13 +52,13 @@ With this set of genomic regions, we should check that they look correct. My gen
 |OsPSY7|chr05:26922134-26923393|99.8%|
 |OsPSY8|chr01:8986139-8987609|99.4%|
 
-I also used IGV to see what the transcript name for each gene region was. To do this, I pasted in the genomic location into the search bar of the browser, then clicked on the blue transcript associated with that region. The popup window lists the transcript name. 
+I also used IGV to see what the transcript name for each gene region was. To do this, I pasted the genomic location into the search bar of the browser, then clicked on the blue transcript associated with that region. The popup window lists the transcript name. 
 
 <center>
 <img src="Output/Figures/IGV_Transcript.png">
 </center>
 
-I manually updated the **IRGSP-1.0_IGVlocs.csv** spreadsheet to include the associated transcript IDs.
+I manually updated my **IRGSP-1.0_IGVlocs.csv** spreadsheet to include the associated transcript IDs.
 
 <center>
 <img src="Output/Figures/After_Annotation.png">
