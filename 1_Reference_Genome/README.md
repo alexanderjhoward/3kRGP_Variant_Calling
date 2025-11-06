@@ -14,13 +14,13 @@ First, we need the reference genome and annotations.
 ## Set up the IGV genome browser
 Once everything is downloaded, set up an IGV profile to look at sample alignments. [IGV](https://igv.org/doc/desktop/#DownloadPage/) is a genome browser that helps visualize genome annotations and sequence alignments.
 1. Open IGV and select "Genomes > Load genome from file”. Select the **IRGSP-1.0_genome.fa** file (downloaded to the "Source" directory).  Once loaded on IGV, the IRGSP-1.0 genome should show up in the browser and be available to select from the drop-down list of genomes.
-2. Load in genome annotations by selecting “File > Load from file” and choosing your annotation file. I like the **transcripts.gff** file (found in the "Source/IRGSP-1.0_representative" directory).
-3. After setting your browser up, you can save your session by creating an IGV profile. Select “File > Save session” and name the session file whatever you’d like. Save this file to a directory you will remember (such as the "Source" directory). If you add any new annotations or alignments to this session, make sure to re-save the session file before closing IGV! To re-load your session, go to “File > Open session” and select the .xml session file you saved.
+2. Load in genome annotations by selecting “File > Load from file” and select the **transcripts.gff** file (found in the "Source/IRGSP-1.0_representative" directory).
+3. After setting your browser up, save your session by creating an IGV profile. Select “File > Save session” and name the session file whatever you’d like. Save this file to a directory you will remember (such as the "Source" directory). If you add any new annotations or alignments to this session, make sure to re-save the session file before closing IGV! To re-load your session, go to “File > Open session” and select the .xml session file you saved.
 
 *Note: If you move your genome, annotations, sequence files, or .xml session file to a different directory then the session will no longer load properly in IGV, so make sure these files stay where they are when you save your session.*
 
 ## Collect or create Nipponbare genome annotations for genes of interest
-Next, use BLAST to search for your genes of interest within the Nipponbare reference genome. Input all your sequences as a FASTA file into the script (Mine is called **OsPSY_vars.fa**, found in the "Source" directory. You can use any other FASTA you prefer). This script saves BLAST results as **IRGSP-1.0_BLASTsearch.txt** into the "Output" directory.
+Next, use BLAST to search for your genes of interest within the Nipponbare reference genome. Input all your sequences as a FASTA file into the script (Mine is called **OsPSY_vars.fa**, found in the "Source" directory). This script saves the BLAST results to **IRGSP-1.0_BLASTsearch.txt** in the "Output" directory.
 
 ```{bash}
 
@@ -28,7 +28,7 @@ Next, use BLAST to search for your genes of interest within the Nipponbare refer
 
 ```
 
-The **blast_cleanup.R** script is used next to identify the top BLAST hit for each sequence. These are saved to a text file named **IRGSP-1.0_IGVlocs.txt** in the "Output" directory.
+The **blast_cleanup.R** script identifies the top BLAST hit for each sequence. These results are saved to **IRGSP-1.0_IGVlocs.txt** in the "Output" directory.
 
 ```{r}
 
@@ -40,7 +40,7 @@ The **blast_cleanup.R** script is used next to identify the top BLAST hit for ea
 <img src="Output/Figures/Before_Annotation.png">
 </center>
 
-We should check that these genomic regions look correct. My query sequences came from Kitaake, so I aligned my top hits against the Kitaake sequences to make sure they looked similar.
+Check that these genomic regions look correct. My query sequences came from Kitaake, so I aligned my top hits against the Kitaake sequences to make sure they looked similar.
 
 |Sequence|Location|% Identity to Kitaake|
 |:---:|:---:|:---:|
@@ -53,19 +53,19 @@ We should check that these genomic regions look correct. My query sequences came
 |OsPSY7|chr05:26922134-26923393|99.8%|
 |OsPSY8|chr01:8986139-8987609|99.4%|
 
-I also used IGV to see what the transcript name for each gene region was. To do this, I pasted the genomic location into the search bar of the browser, then clicked on the blue transcript associated with that region. The popup window lists the transcript name. 
+Use IGV to see what the transcript name for each gene region is. To do this, paste the genomic location into the search bar of the browser, then click on the blue transcript associated with that region. The popup window should list the transcript name. 
 
 <center>
 <img src="Output/Figures/IGV_Transcript.png">
 </center>
 
-I manually updated my **IRGSP-1.0_IGVlocs.txt** file to include these associated transcript IDs. Each column is just separated by a space.
+Manually update the **IRGSP-1.0_IGVlocs.txt** file to include the associated transcript ID. Each column just separated by a single space.
 
 <center>
 <img src="Output/Figures/After_Annotation.png">
 </center>
 
-It's important to note that sometimes genomes are not as well-annotated as you want them to be. A genomic region may not have any associated transcript annotations, or the annotation for a particular gene may not look exactly right. For example, the transcript for OsPSY5 (Os11t0600600-01) contains a single exon. When we compare this annotation to the Kitaake OsPSY5 transcript (OsKitaake11g189000), this seems to be inaccurate.
+It's important to note that sometimes genomes are not as well-annotated as you want them to be. A genomic region may not have any associated transcript annotations, or the annotation for a particular gene may not look exactly right. For example, the transcript for OsPSY5 (Os11t0600600-01) contains a single exon. When we compare this annotation to the reference Kitaake OsPSY5 transcript (OsKitaake11g189000), this seems to be inaccurate.
 
 <center>
 <img src="Output/Figures/Nipponbare_OsPSY5.png">
@@ -75,7 +75,8 @@ It's important to note that sometimes genomes are not as well-annotated as you w
 <img src="Output/Figures/Kitaake_OsPSY5.png">
 </center>
 
-If this happens, you can manually write your own genome annotations. Genome annotations are in [GFF format](https://en.wikipedia.org/wiki/General_feature_format), which is a text file of tab-separated values. I manually aligned the Kitaake annotation against the Nipponbare genome and noted down the genomic regions for each exon. The data I ended up collecting looked like this:
+If this happens, you can manually write your own genome annotations. Genome annotations are in [GFF format](https://en.wikipedia.org/wiki/General_feature_format), which is a text file of tab-separated values. I manually aligned the Kitaake OsPSY5 annotation against the Nipponbare genome and copied down the genomic regions for each exon. The data I ended up collecting looked like this:
+
 |chromosome|source|feature|start|end|score|strand|phase|attributes|
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
 |chr11|self-annotation|mRNA|23063476|23064575|.|+|.|ID=OsPSY5|
@@ -93,7 +94,7 @@ I formatted this data to fit GFF requirements and saved it as **OsPSY5_Nipponbar
 
 ```
 
-When I go back onto IGV and reload my session, my annotated gene should now included in **transcripts.gff** on the browser. Yay!
+When you go back onto IGV and reload the session, any annotations added to **transcripts.gff** should now appear on the browser. Yay!
 
 *Note: By default, IGV will have all transcript annotations overlap into a single track. To show all annotations in a region clearly, right-click the annotation track and select the "Expanded" option.*
 
@@ -101,13 +102,13 @@ When I go back onto IGV and reload my session, my annotated gene should now incl
 <img src="Output/Figures/Updated_Nipponbare_OsPSY5.png">
 </center>
 
-Since this manual annotation is what I want to use in my genome search, I can update my spreadsheet with the new OsPSY5 ID.
+Since this manual annotation is what I want to use in my genome search, I updated **IRGSP-1.0_IGVlocs.txt** with the new OsPSY5 ID.
 
 <center>
 <img src="Output/Figures/Final_Annotation.png">
 </center>
 
-The final step is to pull out all the transcript annotations we are interested in from the updated annotation file. This gets saved to **genes_of_interest.gff** in the "Output" directory.
+Pull all the transcript IDs of interest from the **transcripts.gff** annotation file. Save this to **genes_of_interest.gff** in the "Output" directory.
 
 ```{bash}
 
@@ -117,7 +118,7 @@ The final step is to pull out all the transcript annotations we are interested i
 
 ## Generate files with final regions of interest
 
-Now that we have our GFF annotation file of all genes we want to search, we can generate some files that will be used later to search the 3kRGP dataset.
+We now have a GFF file with just our genes of interest annotated in the Nipponbare genome. The last step is to generate some files that will be used to help us efficiently search the 3kRGP dataset.
 
 ```{r}
 
