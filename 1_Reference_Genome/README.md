@@ -1,6 +1,6 @@
 # Step 1: Identify regions of interest in reference genome
 
-The 3kRGP has sample genomes aligned against the Nipponbare IRGSP-1.0 reference genome. We need to query these alignments to get sequence variants. Since the sample genomes were assembled relative to Nipponbare, we first need to figure out where in the Nipponbare genome our genes of interest are located. These will be the locations that we then retrieve from each sample genome down the line.
+The 3kRGP has genomes aligned against the Nipponbare IRGSP-1.0 reference genome. Since the sample genomes were assembled relative to Nipponbare, we first need to figure out where in the Nipponbare genome our genes of interest are located. Take your time verifying the region you are pulling from and ensure the region is accurately annotated so you life will be easier down the road!
 
 ## Download the Nipponbare genome assembly and annotation
 First, we need the reference genome and annotations.
@@ -27,7 +27,7 @@ Next, use BLAST to search for your genes of interest within the Nipponbare refer
 
 ```
 
-The **blast_cleanup.R** script is used next to find the top BLAST hit for each sequence of interest. These are output as a spreadsheet called **IRGSP-1.0_IGVlocs.csv** in the "Output" directory.
+The **blast_cleanup.R** script is used next to identify the top BLAST hit for each sequence. These are saved to a spreadsheet named **IRGSP-1.0_IGVlocs.csv** in the "Output" directory.
 
 ```{r}
 
@@ -39,21 +39,47 @@ The **blast_cleanup.R** script is used next to find the top BLAST hit for each s
 <img src="Output/Figures/Before_Annotation.png">
 </center>
 
-With this set of genomic regions, we should check that they look correct. My genes of interest came from Kitaake, so I aligned my top BLAST hits against the Kitaake sequences to make sure they looked very similar. I also used IGV to see what the transcript name for each gene region was. Below are my results.
+With this set of genomic regions, we should check that they look correct. My genes of interest came from Kitaake, so I aligned my top BLAST hits against the Kitaake sequences to make sure they looked very similar.
 
-|Sequence|Location|Transcript|% Identity to Kitaake|Strand|
-|:---:|:---:|:---:|:---:|:---:|
-|OsPSY1|chr05:23958390-23959669|Os05t0487100-01|99.8%|+|
-|OsPSY2|chr05:23978454-23979760|Os05t0487300-01|99.8%|+|
-|OsPSY3|chr01:9711570-9712578|Os01t0276900-01|98.2%|-|
-|OsPSY4|chr01:34674485-34676267|Os01t0815400-01|99.8%|-|
-|OsPSY5|chr11:23063010-23064583|Os11t0600600-01|99.9%|+|
-|OsPSY6|chr07:26188163-26189948|Os07t0631300-01|99.9%|-|
-|OsPSY7|chr05:26922134-26923393|Os05t0542300-01|99.8%|-|
-|OsPSY8|chr01:8986139-8987609|Os01t0264400-01|99.4%|+|
+|Sequence|Location|% Identity to Kitaake|
+|:---:|:---:|:---:|
+|OsPSY1|chr05:23958390-23959669|99.8%|
+|OsPSY2|chr05:23978454-23979760|99.8%|
+|OsPSY3|chr01:9711570-9712578|98.2%|
+|OsPSY4|chr01:34674485-34676267|99.8%|
+|OsPSY5|chr11:23063010-23064583|99.9%|
+|OsPSY6|chr07:26188163-26189948|99.9%|
+|OsPSY7|chr05:26922134-26923393|99.8%|
+|OsPSY8|chr01:8986139-8987609|99.4%|
 
-I added these transcript names to the **IRGSP-1.0_IGVlocs.csv** spreadsheet by their corresponding sequence.
+I also used IGV to see what the transcript name for each gene region was. To do this, I pasted in the genomic location into the search bar of the browser, then clicked on the blue transcript associated with that region. The popup window lists the transcript name. 
+
+<center>
+<img src="Output/Figures/IGV_Transcript.png">
+</center>
+
+I manually updated the **IRGSP-1.0_IGVlocs.csv** spreadsheet to include the associated transcript IDs.
 
 <center>
 <img src="Output/Figures/After_Annotation.png">
 </center>
+
+It's important to note that sometimes genomes are not as well-annotated as you want them to be. Sometimes a gene has no associated transcript annotation, or maybe the annotation doesn't look quite right. For example, the transcript for OsPSY5 (Os11t0600600-01) contains a single exon. When we compare this exon annotation to the Kitaake OsPSY5 transcript (and to other OsPSY variants), this seems inaccurate. 
+
+If this happens, you can manually write your own genome annotations. Genome annotations are in [GFF format](https://en.wikipedia.org/wiki/General_feature_format), which is a text file of tab-separated values. The data I collected looked like this:
+|chromosome|source|feature|start|end|score|strand|phase|attributes|
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+[chr11|self-annotation|mRNA|23063476|23064575|.|+|.|ID=OsPSY5|
+|chr11|self-annotation|CDS|23063675|23063771|.|+|0|Parent=OsPSY5|
+|chr11|self-annotation|CDS|23063896|23063954|.|+|2|Parent=OsPSY5|
+|chr11|self-annotation|CDS|23064191|23064322|.|+|0|Parent=OsPSY5|
+
+I formatted this data to fit GFF requirements and saved it as **OsPSY5_Nipponbare.gff** in the "Source" directory. I then combined this annotation with the IRGSP-1.0 annotation and saved it as **updated_transcripts.gff** in the "Source" directory.
+
+```{bash}
+
+	cat Source/IRGSP-1.0_representative/transcripts.gff Source/OsPSY5_Nipponbare.gff > Source/updated_transcripts.gff 
+
+```
+
+When I go back onto IGV and load in my new annotation, I can see that my annotated 
