@@ -75,7 +75,7 @@ It's important to note that sometimes genomes are not as well-annotated as you w
 <img src="Output/Figures/Kitaake_OsPSY5.png">
 </center>
 
-If this happens, you can manually write your own genome annotations. Genome annotations are in [GFF format](https://en.wikipedia.org/wiki/General_feature_format), which is a text file of tab-separated values. I manually aligned the Kitaake OsPSY5 annotation against the Nipponbare genome and copied down the genomic regions for each exon. The data I ended up collecting looked like this:
+If this happens, you can manually write your own genome annotations. Genome annotations are in [GFF format](https://en.wikipedia.org/wiki/General_feature_format), which is a text file of tab-separated values. I manually aligned the Kitaake OsPSY5 annotation against the Nipponbare genome and copied down the genomic regions that corresponded to each exon. The data I ended up collecting looked like this:
 
 |chromosome|source|feature|start|end|score|strand|phase|attributes|
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
