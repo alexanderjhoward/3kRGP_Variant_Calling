@@ -106,7 +106,7 @@ Since this manual annotation is what I want to use in my genome search, I update
 <img src="Output/Figures/Final_Annotation.png">
 </center>
 
-We can now pull all the listed transcript IDs of interest out from the **transcripts.gff** annotation file. Save this output to **genes_of_interest.gff** in the "Output" directory.
+We can now pull all the listed transcript IDs of interest out from the **transcripts.gff** annotation file. Save this to **genes_of_interest.gff** in the "Output" directory.
 
 ```{bash}
 awk '{print $3}' Output/IRGSP-1.0_IGVlocs.txt | grep -Ff - Source/IRGSP-1.0_representative/transcripts.gff > Output/genes_of_interest.gff
@@ -114,14 +114,14 @@ awk '{print $3}' Output/IRGSP-1.0_IGVlocs.txt | grep -Ff - Source/IRGSP-1.0_repr
 
 ## Generate files with final regions of interest
 
-We now have a GFF file with just our genes of interest annotated in the Nipponbare genome. The last step is to generate some files that will be used to help us efficiently search the 3kRGP dataset.
+We now have a GFF file listing just our genes of interest annotated to the Nipponbare genome. The last step is to generate some files that will be used to search the 3kRGP dataset.
 
 ```{bash}
 Rscript Scripts/format_gff.R
 ```
 
 This script saves two things to the "Output" directory:
-1. A BED file containing all the genomic regions you are interested in.
-2. A set of text files for each gene that list the genomic location of each exon (ordered by gene strandedness).
+1. A BED file containing all the genomic regions you are interested in (**genes.bed**).
+2. A set of text files for each gene that list the genomic location of each exon ordered by gene strandedness (**[gene_name]_CDS.txt**).
 
 With all this work finished, we can finally search for genetic variants!
