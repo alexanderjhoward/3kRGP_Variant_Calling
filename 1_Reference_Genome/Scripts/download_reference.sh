@@ -1,5 +1,4 @@
-#!/bin/bash -login
-
+#!/bin/bash
 # Download and index reference genome
 wget -P Source/ https://rapdb.dna.affrc.go.jp/download/archive/irgsp1/IRGSP-1.0_genome.fasta.gz
 gunzip Source/IRGSP-1.0_genome.fasta.gz
