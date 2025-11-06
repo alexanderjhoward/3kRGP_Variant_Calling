@@ -59,7 +59,7 @@ Use IGV to see what the transcript name for each gene region is. To do this, pas
 <img src="Output/Figures/IGV_Transcript.png">
 </center>
 
-Manually update the **IRGSP-1.0_IGVlocs.txt** file to include the associated transcript ID. Each column just separated by a single space.
+Manually update the **IRGSP-1.0_IGVlocs.txt** file to include the associated transcript ID. Each column is separated by a single space.
 
 <center>
 <img src="Output/Figures/After_Annotation.png">
