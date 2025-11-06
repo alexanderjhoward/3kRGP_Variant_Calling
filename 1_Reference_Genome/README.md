@@ -27,7 +27,7 @@ Next, use BLAST to search for your genes of interest within the Nipponbare refer
 
 ```
 
-The **blast_cleanup.R** script is used next to find the top BLAST hit for each sequence of interest. These are output as a spreadsheet called **IRGSP-1.0_IGVlocs.csv** in the "Output" directory.
+The **blast_cleanup.R** script is used next to identify the top BLAST hit for each sequence. These are saved to a spreadsheet named **IRGSP-1.0_IGVlocs.csv** in the "Output" directory.
 
 ```{r}
 
@@ -39,20 +39,24 @@ The **blast_cleanup.R** script is used next to find the top BLAST hit for each s
 <img src="Output/Figures/Before_Annotation.png">
 </center>
 
-With this set of genomic regions, we should check that they look correct. My genes of interest came from Kitaake, so I aligned my top BLAST hits against the Kitaake sequences to make sure they looked very similar. I also used IGV to see what the transcript name for each gene region was. Below are my results.
+With this set of genomic regions, we should check that they look correct. My genes of interest came from Kitaake, so I aligned my top BLAST hits against the Kitaake sequences to make sure they looked very similar.
 
-|Sequence|Location|Transcript|% Identity to Kitaake|Strand|
-|:---:|:---:|:---:|:---:|:---:|
-|OsPSY1|chr05:23958390-23959669|Os05t0487100-01|99.8%|+|
-|OsPSY2|chr05:23978454-23979760|Os05t0487300-01|99.8%|+|
-|OsPSY3|chr01:9711570-9712578|Os01t0276900-01|98.2%|-|
-|OsPSY4|chr01:34674485-34676267|Os01t0815400-01|99.8%|-|
-|OsPSY5|chr11:23063010-23064583|Os11t0600600-01|99.9%|+|
-|OsPSY6|chr07:26188163-26189948|Os07t0631300-01|99.9%|-|
-|OsPSY7|chr05:26922134-26923393|Os05t0542300-01|99.8%|-|
-|OsPSY8|chr01:8986139-8987609|Os01t0264400-01|99.4%|+|
+|Sequence|Location|% Identity to Kitaake|
+|:---:|:---:|:---:|
+|OsPSY1|chr05:23958390-23959669|99.8%|
+|OsPSY2|chr05:23978454-23979760|99.8%|
+|OsPSY3|chr01:9711570-9712578|98.2%|
+|OsPSY4|chr01:34674485-34676267|99.8%|
+|OsPSY5|chr11:23063010-23064583|99.9%|
+|OsPSY6|chr07:26188163-26189948|99.9%|
+|OsPSY7|chr05:26922134-26923393|99.8%|
+|OsPSY8|chr01:8986139-8987609|99.4%|
 
-I added these transcript names to the **IRGSP-1.0_IGVlocs.csv** spreadsheet by their corresponding sequence.
+I also used IGV to see what the transcript name for each gene region was. I added these transcript names to the **IRGSP-1.0_IGVlocs.csv** spreadsheet by their corresponding sequence.
+
+<center>
+<img src="Output/Figures/IGV_Transcript.png">
+</center>
 
 <center>
 <img src="Output/Figures/After_Annotation.png">
