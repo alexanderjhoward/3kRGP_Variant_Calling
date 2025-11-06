@@ -98,7 +98,7 @@ When I go back onto IGV and load **updated_transcripts.gff** into my session, I 
 <img src="Output/Figures/Updated_Nipponbare_OsPSY5.png">
 </center>
 
-Since this manual annotation is what I want to use in my genome search, I can update the spreadsheet with its new ID.
+Since this manual annotation is what I want to use in my genome search, I can update the spreadsheet with the new OsPSY5 ID.
 
 <center>
 <img src="Output/Figures/Final_Annotation.png">
