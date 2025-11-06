@@ -2,13 +2,17 @@
 
 The 3kRGP has genomes aligned against the Nipponbare IRGSP-1.0 reference genome. Since the sample genomes were assembled relative to Nipponbare, we first need to figure out where in the Nipponbare genome our genes of interest are located. Take your time verifying the region you are pulling from and ensure the region is accurately annotated so you life will be easier down the road!
 
+Make sure you have your mamba environment active while running these scripts.
+```{bash}
+mamba activate 3kRGP
+```
+
 ## Download the Nipponbare genome assembly and annotation
+
 First, we need the reference genome and annotations.
 
 ```{bash}
-
-	sbatch Scripts/download_reference.sh
-
+bash Scripts/download_reference.sh
 ```
 
 ## Set up the IGV genome browser
@@ -23,17 +27,13 @@ Once everything is downloaded, set up an IGV profile to look at sample alignment
 Next, use BLAST to search for your genes of interest within the Nipponbare reference genome. Input all your sequences as a FASTA file into the script (Mine is called **OsPSY_vars.fa**, found in the "Source" directory). This script saves the BLAST results to **IRGSP-1.0_BLASTsearch.txt** in the "Output" directory.
 
 ```{bash}
-
-	sbatch Scripts/blast_reference.sh Source/OsPSY_vars.fa
-
+bash Scripts/blast_reference.sh Source/OsPSY_vars.fa
 ```
 
 The **blast_cleanup.R** script identifies the top BLAST hit for each sequence. These results are saved to **IRGSP-1.0_IGVlocs.txt** in the "Output" directory.
 
-```{r}
-
-	Rscript Scripts/blast_cleanup.R
-
+```{bash}
+Rscript Scripts/blast_cleanup.R
 ```
 
 <center>
@@ -89,9 +89,7 @@ If this happens, you can manually write your own genome annotations. Genome anno
 I formatted this data to fit GFF requirements and saved it as **OsPSY5_Nipponbare.gff** in the "Source" directory. I then apended this annotation to the end of the IRGSP-1.0 annotation.
 
 ```{bash}
-
-	cat Source/OsPSY5_Nipponbare.gff >> Source/IRGSP-1.0_representative/transcripts.gff
-
+cat Source/OsPSY5_Nipponbare.gff >> Source/IRGSP-1.0_representative/transcripts.gff
 ```
 
 When you go back onto IGV and reload the session, any annotations added to **transcripts.gff** should now appear on the browser. Yay!
@@ -111,19 +109,15 @@ Since this manual annotation is what I want to use in my genome search, I update
 We can now pull all the listed transcript IDs of interest out from the **transcripts.gff** annotation file. Save this output to **genes_of_interest.gff** in the "Output" directory.
 
 ```{bash}
-
-	awk '{print $3}' Output/IRGSP-1.0_IGVlocs.txt | grep -Ff - Source/IRGSP-1.0_representative/transcripts.gff > Output/genes_of_interest.gff
-
+awk '{print $3}' Output/IRGSP-1.0_IGVlocs.txt | grep -Ff - Source/IRGSP-1.0_representative/transcripts.gff > Output/genes_of_interest.gff
 ```
 
 ## Generate files with final regions of interest
 
 We now have a GFF file with just our genes of interest annotated in the Nipponbare genome. The last step is to generate some files that will be used to help us efficiently search the 3kRGP dataset.
 
-```{r}
-
-	Rscript Scripts/format_gff.R
-
+```{bash}
+Rscript Scripts/format_gff.R
 ```
 
 This script saves two things to the "Output" directory:
@@ -131,4 +125,3 @@ This script saves two things to the "Output" directory:
 2. A set of text files for each gene that list the genomic location of each exon (ordered by gene strandedness).
 
 With all this work finished, we can finally search for genetic variants!
-
