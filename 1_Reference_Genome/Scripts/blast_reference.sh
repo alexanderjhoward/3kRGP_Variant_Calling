@@ -16,8 +16,16 @@ set -e
 set -x
 
 # Define variables
-# Define input variables
 FASTA=${1}
+
+# Check if variable is empty or unset
+if [[ -z "$FASTA" ]]; then
+  echo "Error: FASTA is required but not provided." >&2
+  exit 1
+fi
+
+# Proceed if variable is provided
+echo BLAST is querying with "$FASTA"
 
 # BLAST search for genes of interest against Nipponbare reference genome
 cp Source/IRGSP-1.0_genome.fasta Source/BLAST/
