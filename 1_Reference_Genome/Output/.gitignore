@@ -1,3 +1,5 @@
 *.csv
 *.tsv
 *.txt
+*.bed
+*.gff

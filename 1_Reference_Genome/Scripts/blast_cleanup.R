@@ -4,7 +4,7 @@ library(tidyverse)
 setwd(dirname(getActiveDocumentContext()$path))
 
 # Load in BLAST results
-df <- read.csv('../Output/OsPSY_search.txt', header = F)
+df <- read.csv('../Output/IRGSP-1.0_BLASTsearch.txt', header = F)
 colnames(df) <- c('qseqid','sseqid','evalue','bitscore','qstart','qend','qseq','sstart','send','sseq')
 
 # Filter for sequences of interest
@@ -14,8 +14,9 @@ filtered <- df %>%
   mutate(strand = ifelse(sstart < send, "+", "-")) %>%
   mutate(start = ifelse(sstart < send, sstart, send)) %>%
   mutate(end = ifelse(sstart < send, send, sstart)) %>%
-  mutate(igv = paste0(sseqid, ":", start, "-", end))
+  mutate(igv = paste0(sseqid, ":", start, "-", end)) %>%
+  mutate(transcript=NA)
 
-# Format output file to search for corresponding transcript ID in IGV
-output <- filtered %>% select(qseqid, igv)
-write.csv(output, file="../Output/IRGSP-1.0_OsPSY_IGVlocs.csv", quote=FALSE, row.names = FALSE)
+# Output CSV table with IGV locations of genes of interest and a blank space for what transcript corresponds
+output <- filtered %>% select(qseqid, igv, transcript)
+write.table(output, file="../Output/IRGSP-1.0_IGVlocs.txt", quote=FALSE, row.names = FALSE, col.names = FALSE)
