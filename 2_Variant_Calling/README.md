@@ -1,5 +1,5 @@
 # Step 2: Call sample genome variants relative to reference genome
-The 3kRGP is hosted online and can be queried to pull small genomic regions instead of having to download the entire genome assembly. After downloading these alignments, we can compare them to the Nipponbare reference genome to call sequence variants. These sequences can then be saved and analyzed down the road.
+The 3kRGP is hosted online and can be queried to pull small genomic regions instead of having to download the entire genome assembly. After downloading these alignments, we can compare them to the Nipponbare reference genome and call sequence variants. These variants can then be saved to FASTA files and analyzed down the road.
 
 ## Call sequence variants
 The **call_variants.sh** script does the following:
