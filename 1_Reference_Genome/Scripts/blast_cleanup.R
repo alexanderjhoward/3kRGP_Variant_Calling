@@ -1,10 +1,8 @@
 #Setup
-library(rstudioapi)
-library(tidyverse)
-setwd(dirname(getActiveDocumentContext()$path))
+library(dplyr)
 
 # Load in BLAST results
-df <- read.csv('../Output/IRGSP-1.0_BLASTsearch.txt', header = F)
+df <- read.csv('Output/IRGSP-1.0_BLASTsearch.txt', header = F)
 colnames(df) <- c('qseqid','sseqid','evalue','bitscore','qstart','qend','qseq','sstart','send','sseq')
 print(df)
 
@@ -20,4 +18,4 @@ filtered <- df %>%
 
 # Output CSV table with IGV locations of genes of interest and a blank space for what transcript corresponds
 output <- filtered %>% select(qseqid, igv, transcript)
-write.table(output, file="../Output/IRGSP-1.0_IGVlocs.txt", quote=FALSE, row.names = FALSE, col.names = FALSE)
+write.table(output, file="Output/IRGSP-1.0_IGVlocs.txt", quote=FALSE, row.names = FALSE, col.names = FALSE)

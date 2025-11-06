@@ -1,14 +1,12 @@
 #Setup
-library(rstudioapi)
 library(tidyverse)
 library(ape)
-setwd(dirname(getActiveDocumentContext()$path))
 
 # Read in genome annotation
-gff <- read.gff('../Output/genes_of_interest.gff', na.strings = c('.', '?'), GFF3 = TRUE)
+gff <- read.gff('Output/genes_of_interest.gff', na.strings = c('.', '?'), GFF3 = TRUE)
 
 # Load in IGV data (after we edited it to include our transcripts of interest)
-locs <- read.table('../Output/IRGSP-1.0_IGVlocs.txt', col.names=c('qseqid', 'igv', 'transcript'))
+locs <- read.table('Output/IRGSP-1.0_IGVlocs.txt', col.names=c('qseqid', 'igv', 'transcript'))
 transcripts <- locs %>% pull(transcript)
 
 # Pull genes of interest from genome annotation
@@ -22,7 +20,7 @@ genes <- gff %>%
   mutate(score = "0") %>%
   arrange(qseqid) %>%
   select(seqid, start, end, qseqid, score, strand)
-write.table(genes, file='../Output/genes.bed', quote=FALSE, sep="\t", row.names = F, col.names = F)
+write.table(genes, file='Output/genes.bed', quote=FALSE, sep="\t", row.names = F, col.names = F)
 
 # Pull CDS of interest from genome annotation and order the exons by strandedness
 #   - If the strand is forward (+), order exons in ascending order
@@ -45,7 +43,7 @@ pull_cds <- function(a, b){
   locs_subset <- locs_subset %>%
     mutate(coords = paste0(seqid, ":", start, "-", end)) %>%
     select(coords)
-  write.table(locs_subset, file=paste0('../Output/', b,'_CDS.txt'), quote=FALSE, sep="\t", row.names = F, col.names = F)
+  write.table(locs_subset, file=paste0('Output/', b,'_CDS.txt'), quote=FALSE, sep="\t", row.names = F, col.names = F)
 }
 
 for (i in 1:nrow(locs)){
