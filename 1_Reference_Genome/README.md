@@ -52,11 +52,13 @@ With this set of genomic regions, we should check that they look correct. My gen
 |OsPSY7|chr05:26922134-26923393|99.8%|
 |OsPSY8|chr01:8986139-8987609|99.4%|
 
-I also used IGV to see what the transcript name for each gene region was. I added these transcript names to the **IRGSP-1.0_IGVlocs.csv** spreadsheet by their corresponding sequence.
+I also used IGV to see what the transcript name for each gene region was. To do this, I pasted in the genomic location into the search bar of the browser, then clicked on the blue transcript associated with that region. The popup window lists the transcript name. 
 
 <center>
 <img src="Output/Figures/IGV_Transcript.png">
 </center>
+
+I manually updated the **IRGSP-1.0_IGVlocs.csv** spreadsheet to include the associated transcript IDs.
 
 <center>
 <img src="Output/Figures/After_Annotation.png">
