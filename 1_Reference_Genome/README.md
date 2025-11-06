@@ -90,6 +90,6 @@ I formatted this data to fit GFF requirements and saved it as **OsPSY5_Nipponbar
 
 ```
 
-When I go back onto IGV and load in this new annotation to my session, I can see that my annotated gene is now included in the browser. Yay!
+When I go back onto IGV and load this new annotation into my session, I can see that my annotated gene is now included in the browser. Yay!
 
 *Note: By default, IGV will have all transcript annotations overlap into a single track. To show all annotations in a region clearly, right-click the annotation track and select the "Expanded" option.*
