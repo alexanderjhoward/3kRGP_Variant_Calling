@@ -79,9 +79,11 @@ If this happens, you can manually write your own genome annotations. Genome anno
 |chromosome|source|feature|start|end|score|strand|phase|attributes|
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
 |chr11|self-annotation|mRNA|23063476|23064575|.|+|.|ID=OsPSY5|
+|chr11|self-annotation|five_prime_UTR|23063476|23064085|.|+|.|Parent=OsPSY5|
 |chr11|self-annotation|CDS|23063675|23063771|.|+|0|Parent=OsPSY5|
 |chr11|self-annotation|CDS|23063896|23063954|.|+|2|Parent=OsPSY5|
 |chr11|self-annotation|CDS|23064191|23064322|.|+|0|Parent=OsPSY5|
+|chr11|self-annotation|three_prime_UTR|23064323|23064575|.|+|.|Parent=OsPSY5|
 
 I formatted this data to fit GFF requirements and saved it as **OsPSY5_Nipponbare.gff** in the "Source" directory. I then combined this annotation with the IRGSP-1.0 annotation and saved it all together as **updated_transcripts.gff** in the "Source" directory.
 
