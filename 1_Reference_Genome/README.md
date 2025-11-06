@@ -20,7 +20,8 @@ Once everything is downloaded, set up an IGV profile to look at sample alignment
 *Note: If you move your genome, annotations, sequence files, or .xml session file to a different directory then the session will no longer load properly in IGV, so make sure these files stay where they are when you save your session.*
 
 ## Collect or create Nipponbare genome annotations for genes of interest
-Next, use BLAST to search for your genes of interest within the Nipponbare reference genome. Input all your sequences as a FASTA file into the script (Mine is called **OsPSY_vars.fa**, found in the "Source" directory. You can use any other FASTA you prefer).
+Next, use BLAST to search for your genes of interest within the Nipponbare reference genome. Input all your sequences as a FASTA file into the script (Mine is called **OsPSY_vars.fa**, found in the "Source" directory. You can use any other FASTA you prefer). This script saves BLAST results as **IRGSP-1.0_BLASTsearch.txt** into the "Output" directory.
+
 ```{bash}
 
 	sbatch Scripts/blast_reference.sh Source/OsPSY_vars.fa
@@ -39,7 +40,7 @@ The **blast_cleanup.R** script is used next to identify the top BLAST hit for ea
 <img src="Output/Figures/Before_Annotation.png">
 </center>
 
-With this set of genomic regions, we should check that they look correct. My query sequences came from Kitaake, so I aligned my top hits against the Kitaake sequences to make sure they looked similar.
+We should check that these genomic regions look correct. My query sequences came from Kitaake, so I aligned my top hits against the Kitaake sequences to make sure they looked similar.
 
 |Sequence|Location|% Identity to Kitaake|
 |:---:|:---:|:---:|
@@ -58,13 +59,13 @@ I also used IGV to see what the transcript name for each gene region was. To do 
 <img src="Output/Figures/IGV_Transcript.png">
 </center>
 
-I manually updated my **IRGSP-1.0_IGVlocs.csv** spreadsheet to include the associated transcript IDs.
+I manually updated my **IRGSP-1.0_IGVlocs.csv** spreadsheet to include these associated transcript IDs.
 
 <center>
 <img src="Output/Figures/After_Annotation.png">
 </center>
 
-It's important to note that sometimes genomes are not as well-annotated as you want them to be. A genomic region may not have any associated transcript annotations, or maybe the annotation for a particular gene doesn't look quite right. For example, the transcript for OsPSY5 (Os11t0600600-01) contains a single exon. When we compare this annotation to the Kitaake OsPSY5 transcript (OsKitaake11g189000), this seems to be inaccurate. 
+It's important to note that sometimes genomes are not as well-annotated as you want them to be. A genomic region may not have any associated transcript annotations, or the annotation for a particular gene may not look exactly right. For example, the transcript for OsPSY5 (Os11t0600600-01) contains a single exon. When we compare this annotation to the Kitaake OsPSY5 transcript (OsKitaake11g189000), this seems to be inaccurate.
 
 <center>
 <img src="Output/Figures/Nipponbare_OsPSY5.png">
@@ -74,7 +75,7 @@ It's important to note that sometimes genomes are not as well-annotated as you w
 <img src="Output/Figures/Kitaake_OsPSY5.png">
 </center>
 
-If this happens, you can manually write your own genome annotations. Genome annotations are in [GFF format](https://en.wikipedia.org/wiki/General_feature_format), which is a text file of tab-separated values. The data I collected looked like this:
+If this happens, you can manually write your own genome annotations. Genome annotations are in [GFF format](https://en.wikipedia.org/wiki/General_feature_format), which is a text file of tab-separated values. I manually aligned the Kitaake annotation against the Nipponbare genome and noted down the genomic regions for each exon. The data I ended up collecting looked like this:
 |chromosome|source|feature|start|end|score|strand|phase|attributes|
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
 |chr11|self-annotation|mRNA|23063476|23064575|.|+|.|ID=OsPSY5|
@@ -82,7 +83,7 @@ If this happens, you can manually write your own genome annotations. Genome anno
 |chr11|self-annotation|CDS|23063896|23063954|.|+|2|Parent=OsPSY5|
 |chr11|self-annotation|CDS|23064191|23064322|.|+|0|Parent=OsPSY5|
 
-I formatted this data to fit GFF requirements and saved it as **OsPSY5_Nipponbare.gff** in the "Source" directory. I then combined this annotation with the IRGSP-1.0 annotation and saved it as **updated_transcripts.gff** in the "Source" directory.
+I formatted this data to fit GFF requirements and saved it as **OsPSY5_Nipponbare.gff** in the "Source" directory. I then combined this annotation with the IRGSP-1.0 annotation and saved it all together as **updated_transcripts.gff** in the "Source" directory.
 
 ```{bash}
 
@@ -98,8 +99,10 @@ When I go back onto IGV and load **updated_transcripts.gff** into my session, I 
 <img src="Output/Figures/Updated_Nipponbare_OsPSY5.png">
 </center>
 
-Since this manual annotation is what I want to use in my genome search, I can update the spreadsheet with the new OsPSY5 ID.
+Since this manual annotation is what I want to use in my genome search, I can update my spreadsheet with the new OsPSY5 ID.
 
 <center>
 <img src="Output/Figures/Final_Annotation.png">
 </center>
+
+The final step is to subset out the transcripts we are interested in from the annotation file.
