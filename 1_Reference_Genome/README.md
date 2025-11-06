@@ -85,7 +85,7 @@ If this happens, you can manually write your own genome annotations. Genome anno
 |chr11|self-annotation|CDS|23064191|23064322|.|+|0|Parent=OsPSY5|
 |chr11|self-annotation|three_prime_UTR|23064323|23064575|.|+|.|Parent=OsPSY5|
 
-I formatted this data to fit GFF requirements and saved it as **OsPSY5_Nipponbare.gff** in the "Source" directory. I then added this annotation on to the IRGSP-1.0 annotation.
+I formatted this data to fit GFF requirements and saved it as **OsPSY5_Nipponbare.gff** in the "Source" directory. I then apended this annotation to the end of the IRGSP-1.0 annotation.
 
 ```{bash}
 
