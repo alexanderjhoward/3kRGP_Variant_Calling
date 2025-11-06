@@ -122,6 +122,6 @@ Rscript Scripts/format_gff.R
 
 This script saves two things to the "Output" directory:
 1. A BED file containing all the genomic regions you are interested in (**genes.bed**).
-2. A set of text files for each gene that list the genomic location of each exon ordered by gene strandedness (**[gene_name]_CDS.txt**).
+2. A set of text files for each gene that list the genomic location of each exon ordered by strandedness (**[gene_name]_CDS.txt**).
 
 With all this work finished, we can finally search for genetic variants!
