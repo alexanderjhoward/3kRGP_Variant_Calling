@@ -28,7 +28,7 @@ Next, use BLAST to search for your genes of interest within the Nipponbare refer
 
 ```
 
-The **blast_cleanup.R** script is used next to identify the top BLAST hit for each sequence. These are saved to a spreadsheet named **IRGSP-1.0_IGVlocs.csv** in the "Output" directory.
+The **blast_cleanup.R** script is used next to identify the top BLAST hit for each sequence. These are saved to a text file named **IRGSP-1.0_IGVlocs.txt** in the "Output" directory.
 
 ```{r}
 
@@ -59,7 +59,7 @@ I also used IGV to see what the transcript name for each gene region was. To do 
 <img src="Output/Figures/IGV_Transcript.png">
 </center>
 
-I manually updated my **IRGSP-1.0_IGVlocs.csv** spreadsheet to include these associated transcript IDs.
+I manually updated my **IRGSP-1.0_IGVlocs.txt** file to include these associated transcript IDs. Each column is just separated by a space.
 
 <center>
 <img src="Output/Figures/After_Annotation.png">
@@ -85,15 +85,15 @@ If this happens, you can manually write your own genome annotations. Genome anno
 |chr11|self-annotation|CDS|23064191|23064322|.|+|0|Parent=OsPSY5|
 |chr11|self-annotation|three_prime_UTR|23064323|23064575|.|+|.|Parent=OsPSY5|
 
-I formatted this data to fit GFF requirements and saved it as **OsPSY5_Nipponbare.gff** in the "Source" directory. I then combined this annotation with the IRGSP-1.0 annotation and saved it all together as **updated_transcripts.gff** in the "Source" directory.
+I formatted this data to fit GFF requirements and saved it as **OsPSY5_Nipponbare.gff** in the "Source" directory. I then added this annotation on to the IRGSP-1.0 annotation.
 
 ```{bash}
 
-	cat Source/IRGSP-1.0_representative/transcripts.gff Source/OsPSY5_Nipponbare.gff > Source/updated_transcripts.gff 
+	cat Source/OsPSY5_Nipponbare.gff >> Source/IRGSP-1.0_representative/transcripts.gff
 
 ```
 
-When I go back onto IGV and load **updated_transcripts.gff** into my session, I can see that my annotated gene is now included in the browser. Yay!
+When I go back onto IGV and reload my session, my annotated gene should now included in **transcripts.gff** on the browser. Yay!
 
 *Note: By default, IGV will have all transcript annotations overlap into a single track. To show all annotations in a region clearly, right-click the annotation track and select the "Expanded" option.*
 
@@ -107,4 +107,10 @@ Since this manual annotation is what I want to use in my genome search, I can up
 <img src="Output/Figures/Final_Annotation.png">
 </center>
 
-The final step is to subset out the transcripts we are interested in from the annotation file.
+The final step is to subset out the transcripts we are interested in from the updated annotation file. 
+
+```{bash}
+
+	awk '{print $3}' Output/IRGSP-1.0_IGVlocs.txt | grep -Ff - Source/IRGSP-1.0_representative/transcripts.gff > Source/genes_of_interest.gff
+
+```
