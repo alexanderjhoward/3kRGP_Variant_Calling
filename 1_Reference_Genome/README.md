@@ -63,3 +63,20 @@ I manually updated the **IRGSP-1.0_IGVlocs.csv** spreadsheet to include the asso
 <center>
 <img src="Output/Figures/After_Annotation.png">
 </center>
+
+It's important to note that sometimes genomes are not as well-annotated as you want them to be. Sometimes a gene has no associated transcript annotation, or maybe the annotation doesn't look quite right. For example, the transcript for OsPSY5 (Os11t0600600-01) contains a single exon. When we compare this transcript to the Kitaake OsPSY5 transcript (and to other OsPSY variants), this seems inaccurate. 
+
+If you notice this, you can manually write up your own genome annotations. Genome annotations are in "GFF" format, which is just a text file of tab-separated values. The fields look like this:
+|chromosome|source|feature|start|end|score|strand|phase|attributes|
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+|chr11|self-annotation|CDS|23063675|23063771|.|+|0|OsPSY5|
+|chr11|self-annotation|CDS|23063896|23063954|.|+|2|OsPSY5|
+|chr11|self-annotation|CDS|23063896|23063954|.|+|2|OsPSY5|
+
+I have this annotation saved as **OsPSY5_Nipponbare.gff** in the "Source" directory. I then combined this annotation with the IRGSP-1.0 annotation and saved it as **updated_transcripts.gff** in the "Source" directory.
+
+```{bash}
+
+	cat Source/IRGSP-1.0_representative/transcripts.gff Source/OsPSY5_Nipponbare.gff > Source/updated_transcripts.gff 
+
+```
