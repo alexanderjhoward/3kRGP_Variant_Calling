@@ -32,7 +32,7 @@ The **blast_cleanup.R** script identifies the top BLAST hit for each sequence. T
 
 ```{r}
 
-	Scripts/blast_cleanup.R
+	Rscript Scripts/blast_cleanup.R
 
 ```
 
@@ -122,7 +122,7 @@ We now have a GFF file with just our genes of interest annotated in the Nipponba
 
 ```{r}
 
-	Scripts/format_gff.R
+	Rscript Scripts/format_gff.R
 
 ```
 
