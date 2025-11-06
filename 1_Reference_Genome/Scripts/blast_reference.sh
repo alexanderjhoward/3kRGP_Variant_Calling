@@ -1,5 +1,4 @@
-#!/bin/bash -login
-
+#!/bin/bash
 # Define variables
 FASTA=${1}
 
