@@ -114,7 +114,7 @@ awk '{print $3}' Output/IRGSP-1.0_IGVlocs.txt | grep -Ff - Source/IRGSP-1.0_repr
 
 ## Generate files with final regions of interest
 
-We now have a GFF file listing just our genes of interest annotated to the Nipponbare genome. The last step is to generate some files that will be used to search the 3kRGP dataset.
+We now have a GFF file containing only our genes of interest annotated to the Nipponbare genome. The last step is to generate some files that will be used to search the 3kRGP dataset.
 
 ```{bash}
 Rscript Scripts/format_gff.R
