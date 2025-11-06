@@ -79,7 +79,7 @@ If this happens, you can manually write your own genome annotations. Genome anno
 |chromosome|source|feature|start|end|score|strand|phase|attributes|
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
 |chr11|self-annotation|mRNA|23063476|23064575|.|+|.|ID=OsPSY5|
-|chr11|self-annotation|five_prime_UTR|23063476|23064085|.|+|.|Parent=OsPSY5|
+|chr11|self-annotation|five_prime_UTR|23063476|23063674|.|+|.|Parent=OsPSY5|
 |chr11|self-annotation|CDS|23063675|23063771|.|+|0|Parent=OsPSY5|
 |chr11|self-annotation|CDS|23063896|23063954|.|+|2|Parent=OsPSY5|
 |chr11|self-annotation|CDS|23064191|23064322|.|+|0|Parent=OsPSY5|
