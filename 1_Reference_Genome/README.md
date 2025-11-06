@@ -23,7 +23,7 @@ Once everything is downloaded, set up an IGV profile to look at sample alignment
 
 *Note: If you move or rename your genome, annotations, sequence files, or .xml session file then the session will no longer load properly in IGV, so make sure these files stay where they are after you save your session.*
 
-## Collect or create Nipponbare genome annotations for genes of interest
+## Collect or create Nipponbare genome annotations for your genes of interest
 Next, use BLAST to search for your genes of interest within the Nipponbare reference genome. Input all your sequences as a FASTA file into the script (mine is called **OsPSY_vars.fa**, found in the "Source" directory). This script saves the BLAST results to **IRGSP-1.0_BLASTsearch.txt** in the "Output" directory.
 
 ```{bash}
@@ -112,7 +112,7 @@ We can now pull all the listed transcript IDs of interest out from the **transcr
 awk '{print $3}' Output/IRGSP-1.0_IGVlocs.txt | grep -Ff - Source/IRGSP-1.0_representative/transcripts.gff > Output/genes_of_interest.gff
 ```
 
-## Generate files with final regions of interest
+## Generate files with your final regions of interest
 
 We now have a GFF file containing only our genes of interest annotated to the Nipponbare genome. The last step is to generate some files that will be used to search the 3kRGP dataset.
 
