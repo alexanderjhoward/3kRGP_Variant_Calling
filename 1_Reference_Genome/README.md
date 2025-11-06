@@ -108,7 +108,7 @@ Since this manual annotation is what I want to use in my genome search, I update
 <img src="Output/Figures/Final_Annotation.png">
 </center>
 
-Pull all the transcript IDs of interest from the **transcripts.gff** annotation file. Save this to **genes_of_interest.gff** in the "Output" directory.
+We can now pull all the listed transcript IDs of interest out from the **transcripts.gff** annotation file. Save this output to **genes_of_interest.gff** in the "Output" directory.
 
 ```{bash}
 
