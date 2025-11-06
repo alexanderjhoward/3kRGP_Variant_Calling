@@ -66,6 +66,14 @@ I manually updated the **IRGSP-1.0_IGVlocs.csv** spreadsheet to include the asso
 
 It's important to note that sometimes genomes are not as well-annotated as you want them to be. Sometimes a gene has no associated transcript annotation, or maybe the annotation doesn't look quite right. For example, the transcript for OsPSY5 (Os11t0600600-01) contains a single exon. When we compare this exon annotation to the Kitaake OsPSY5 transcript (and to other OsPSY variants), this seems inaccurate. 
 
+<center>
+<img src="Output/Figures/Nipponbare_OsPSY5.png">
+</center>
+
+<center>
+<img src="Output/Figures/Kitaake_OsPSY5.png">
+</center>
+
 If this happens, you can manually write your own genome annotations. Genome annotations are in [GFF format](https://en.wikipedia.org/wiki/General_feature_format), which is a text file of tab-separated values. The data I collected looked like this:
 |chromosome|source|feature|start|end|score|strand|phase|attributes|
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
