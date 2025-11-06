@@ -106,7 +106,7 @@ Since this manual annotation is what I want to use in my genome search, I update
 <img src="Output/Figures/Final_Annotation.png">
 </center>
 
-We can now pull all the listed transcript IDs of interest out from the **transcripts.gff** annotation file. Save this to **genes_of_interest.gff** in the "Output" directory.
+We can now pull all the listed transcript IDs of interest out from the **transcripts.gff** annotation file and save them to **genes_of_interest.gff** in the "Output" directory.
 
 ```{bash}
 awk '{print $3}' Output/IRGSP-1.0_IGVlocs.txt | grep -Ff - Source/IRGSP-1.0_representative/transcripts.gff > Output/genes_of_interest.gff
