@@ -9,7 +9,7 @@ mamba activate 3kRGP
 
 ## Download the Nipponbare genome assembly and annotation
 
-First, we need the reference genome and annotations.
+First, we need to collect our reference genome and annotations.
 
 ```{bash}
 bash Scripts/download_reference.sh
