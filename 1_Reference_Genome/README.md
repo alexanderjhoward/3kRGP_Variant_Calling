@@ -1,4 +1,4 @@
-# Step 1: Identify regions of interest in reference genome
+# Step 1: Identify regions of interest in the Nipponbare reference genome
 
 The 3kRGP has genomes aligned against the Nipponbare IRGSP-1.0 reference genome. Since the sample genomes were assembled relative to Nipponbare, we first need to figure out where in the Nipponbare genome our genes of interest are located. Take your time verifying the region you are pulling from and ensure the region is accurately annotated so you life will be easier down the road!
 
