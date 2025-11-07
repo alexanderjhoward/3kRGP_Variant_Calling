@@ -23,4 +23,4 @@ while read i; do
 done < Source/samples.txt
 ```
 
-The variant call files (VCFs) are saved under the "Output/VCF" directory. The genomic files (FASTAs) are saved under "Output/FASTA" directory. The peptide files (PEPs) are saved under "Output/PEP".
+The variant call files (.vcf) are saved under the "Output/VCF" directory. The genomic files (.fa) are saved under "Output/FASTA" directory. The peptide files (.pep) are saved under "Output/PEP".
