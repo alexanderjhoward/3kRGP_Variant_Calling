@@ -23,4 +23,12 @@ while read i; do
 done < Source/samples.txt
 ```
 
+There are seven samples in the 3kRGP dataset missing index files that make the above script not work. Unfortunately that means we need to download these genomes fully and index them locally. The list of missing samples is saved to **missing_samples.txt** in the "Source" directory.
+
+```bash
+while read i; do
+	sbatch Scripts/missing_3krgp.sh $i
+done < Source/missing_samples.txt
+```
+
 The variant call files (.vcf) are saved under the "Output/VCF" directory. The genomic files (.fa) are saved under "Output/FASTA" directory. The peptide files (.pep) are saved under "Output/PEP".
