@@ -3,7 +3,7 @@
 #SBATCH -p low2                       # partition
 #SBATCH -c 1                          # 1 cores
 #SBATCH -t 0:30:00                    # 30 minute reservation
-#SBATCH --mem=4000                    # 4 Gb memory
+#SBATCH --mem=16000                   # 16 Gb memory
 
 # Initialize and activate conda environment
 . ~/mambaforge/etc/profile.d/conda.sh
