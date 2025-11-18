@@ -32,3 +32,10 @@ done < Source/missing_samples.txt
 ```
 
 The variant call files (.vcf) are saved under the "Output/VCF" directory. The genomic files (.fa) are saved under "Output/FASTA" directory. The peptide files (.pep) are saved under "Output/PEP".
+
+We can collect all these fasta and pep files into CSV files for easier downstream analysis with the following commands:
+
+```bash
+cat Output/FASTA/*.fa | awk '/^>/ { print (NR==1 ? "" : RS) $0; next } { printf "%s", $0 } END { printf RS }' | sed 's/>//' | paste -d ","  - - | sed '1s/^/id,seq\n/' | awk '{ sub("\r$", ""); print }' > Output/search_res.csv
+cat Output/PEP/*.pep | awk '/^>/ { print (NR==1 ? "" : RS) $0; next } { printf "%s", $0 } END { printf RS }' | sed 's/>//' | paste -d ","  - - | sed '1s/^/id,seq\n/' | awk '{ sub("\r$", ""); print }' > Output/pep_search_res.csv
+```
